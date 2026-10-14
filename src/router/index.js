@@ -9,6 +9,21 @@ const router = createRouter({
       name: 'inicio',
       component: () => import('../views/HomeView.vue'),
     },
+    {
+      path: '/orixas',
+      name: 'orixas',
+      component: () => import('../views/OrixasView.vue'),
+    },
+    {
+      path: '/orixas/oxossi',
+      name: 'oxossi',
+      component: () => import('../views/OxossiView.vue'),
+    },
+    {
+      path: '/orixas/oxum',
+      name: 'oxum',
+      component: () => import('../views/OxumView.vue'),
+    },
   ],
 })
 

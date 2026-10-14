@@ -5,25 +5,25 @@ const categorias = [
   {
     titulo: 'Orixás',
     descricao: 'Conheça as histórias, símbolos e fundamentos dos Orixás.',
-    imagem: '/images/orixas/card-orixas.webp',
+    imagem: '/images/orixas/card-orixas.png',
     rota: '/orixas',
   },
   {
     titulo: 'Ervas e Plantas',
     descricao: 'Explore o conhecimento tradicional sobre as folhas e suas utilizações.',
-    imagem: '/images/ervas/card-ervas.webp',
+    imagem: '/images/ervas/card-ervas.png',
     rota: '/ervas',
   },
   {
     titulo: 'Conhecimentos',
     descricao: 'Aprenda sobre nossa cultura, tradições e ensinamentos.',
-    imagem: '/images/conteudos/card-conhecimentos.webp',
+    imagem: '/images/conteudos/card-conhecimentos.png',
     rota: '/conhecimentos',
   },
   {
     titulo: 'Nosso Terreiro',
     descricao: 'Conheça nossa história, comunidade e atividades.',
-    imagem: '/images/conteudos/card-terreiro.webp',
+    imagem: '/images/conteudos/card-terreiro.png',
     rota: '/terreiro',
   },
 ]
