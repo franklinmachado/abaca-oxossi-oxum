@@ -5,13 +5,13 @@ const orixas = [
   {
     nome: 'Oxóssi',
     descricao: 'Conheça a história, os símbolos e os ensinamentos de Oxóssi.',
-    imagem: '/images/orixas/card-orixas.png',
+    imagem: '/images/cards/oxossi-card.png',
     rota: '/orixas/oxossi',
   },
   {
     nome: 'Oxum',
     descricao: 'Conheça a história, os símbolos e os ensinamentos de Oxum.',
-    imagem: '/images/orixas/card-orixas.png',
+    imagem: '/images/cards/oxum-card.png',
     rota: '/orixas/oxum',
   },
 ]

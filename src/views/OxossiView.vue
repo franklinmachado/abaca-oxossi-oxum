@@ -1,27 +1,39 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import OrixaHero from '../components/OrixaHero.vue'
 import CozinhaRitualistica from '../components/CozinhaRitualistica.vue'
 
-const secaoFilhos = ref(null)
-
-function limitarAberturaDesktop() {
-  if (window.innerWidth < 768 || !secaoFilhos.value) return
-  const abertos = [...secaoFilhos.value.querySelectorAll('details[open]')]
-  abertos.slice(1).forEach((cartao) => {
-    cartao.open = false
-  })
-}
-
-function aoAlternarFilho(event) {
-  if (!event.target.open || window.innerWidth < 768 || !secaoFilhos.value) return
-  secaoFilhos.value.querySelectorAll('details[open]').forEach((cartao) => {
-    if (cartao !== event.target) cartao.open = false
-  })
-}
-
-onMounted(() => window.addEventListener('resize', limitarAberturaDesktop))
-onUnmounted(() => window.removeEventListener('resize', limitarAberturaDesktop))
+const mostrarQualidades = ref(false)
+const filhoAberto = ref(-1)
+const caracteristicas = [
+  ['Cores', 'Verde (azul-celeste-claro no Candomblé)'],
+  ['Elemento', 'Terra'],
+  ['Natureza', 'Matas'],
+  ['Símbolo', 'Ofá (arco e flecha)'],
+  ['Saudação', 'Okê Arô! (Odé Kokê Maior)'],
+  ['Dia da semana', 'Quinta-feira'],
+  ['Data comemorativa', '20 de janeiro'],
+  ['Número', '6'],
+  ['Pedras e metal', 'Esmeralda, amazonita; bronze (latão)'],
+  ['Sincretismo', 'São Sebastião'],
+]
+const extras = [
+  ['Fio de contas', 'Verde leitoso (azul-turquesa e azul-claro).'],
+  [
+    'Ervas',
+    'Alecrim, guiné, vence-demanda, abre-caminho, peregum (verde), taioba, espinheira-santa, jurema, jureminha, mangueira, desata-nó, erva-de-Oxóssi, erva-da-jurema, alfavaca, caiçara e eucalipto.',
+  ],
+  ['Flores e essências', 'Flores do campo; essência de alecrim.'],
+  ['Outras pedras', 'Turquesa, quartzo verde e calcita verde.'],
+  ['Correspondências', 'Planeta: Vênus. Chakra: esplênico. Saúde: aparelho respiratório.'],
+  ['Bebidas', 'Vinho tinto (água de coco, caldo de cana, aluá).'],
+  ['Animais', 'Tatu, veado e javali (animais associados à caça).'],
+  [
+    'Comidas',
+    'Axoxô — milho com fatias de coco; frutas; carne de caça; taioba; ewá — feijão-fradinho torrado na panela de barro, papa de coco e frutas.',
+  ],
+  ['Incompatibilidades', 'Mel, cabeça de bicho (nos sacrifícios e alimentos) e ovo.'],
+]
 
 const qualidadesOxossi = [
   'Êboalama',
@@ -173,198 +185,81 @@ const caracteristicasFilhos = [
       </div>
     </section>
 
-    <!-- Características e tradições de Oxóssi -->
+    <!-- Características organizadas conforme o padrão de Oxum -->
     <section class="bg-white px-6 py-20">
       <div class="mx-auto max-w-5xl">
         <div class="text-center">
           <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">
             Fundamentos e tradições
           </p>
-
-          <h2 class="font-serif text-3xl sm:text-4xl text-[#244A32]">Características de Oxóssi</h2>
-
+          <h2 class="font-serif text-3xl text-[#244A32] sm:text-4xl">Características de Oxóssi</h2>
           <p class="mx-auto mt-5 max-w-2xl leading-8 text-[#5C6859]">
-            Conheça as características, os elementos e as correspondências de Oxóssi apresentados no
-            material de estudo da Sociedade Espiritualista Mata Virgem.
+            Correspondências tradicionais apresentadas no material de estudo. Algumas variam entre
+            casas.
           </p>
         </div>
-
-        <!-- Identidade: cor e saudação -->
-        <div
-          class="mx-auto mt-12 max-w-2xl rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6 text-center sm:p-8"
-        >
-          <div class="mx-auto mb-5 h-16 w-16 rounded-full bg-[#244A32]"></div>
-
-          <h3 class="font-serif text-2xl text-[#244A32]">Sua cor: Verde</h3>
-
-          <p class="mt-4 leading-7 text-[#5C6859]">
-            No Abaçá de Oxóssi e Oxum, o verde é a cor associada a Oxóssi, em sintonia com sua
-            ligação com as matas e a natureza.
-          </p>
-
-          <p class="mt-3 text-sm text-[#5C6859]">No Candomblé: Azul Celeste Claro.</p>
-
-          <div class="mt-8 border-t border-[#DCE7D8] pt-6">
-            <p class="mb-2 text-sm uppercase tracking-widest text-[#B58D38]">Saudação</p>
-
-            <h3 class="font-serif text-3xl text-[#244A32]">Okê Arô!</h3>
-
-            <p class="mt-3 text-sm text-[#5C6859]">O documento também apresenta: Odé Kokê Maior.</p>
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <article
+            v-for="[titulo, valor] in caracteristicas"
+            :key="titulo"
+            class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-5 transition duration-200 hover:-translate-y-1 hover:border-[#B58D38] hover:shadow-md"
+          >
+            <h3 class="text-sm font-semibold text-[#287047]">{{ titulo }}</h3>
+            <p class="mt-3 leading-6 text-[#42574D]">{{ valor }}</p>
+          </article>
+        </div>
+        <details class="group mt-8 rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
+          <summary
+            class="flex cursor-pointer list-none items-center justify-between font-semibold text-[#244A32] [&::-webkit-details-marker]:hidden"
+          >
+            Outras características <span class="transition group-open:rotate-180">⌄</span>
+          </summary>
+          <div class="mt-6 grid gap-5 border-t border-[#DCE7D8] pt-6 md:grid-cols-2">
+            <div v-for="[titulo, valor] in extras" :key="titulo">
+              <h3 class="font-semibold text-[#287047]">{{ titulo }}</h3>
+              <p class="mt-2 leading-7 text-[#5C6859]">{{ valor }}</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Demais características -->
-        <div class="mt-10 grid gap-5 md:grid-cols-2">
-          <!-- Fio de contas -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Fio de contas</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]">Verde Leitosas (Azul Turquesa, Azul Claro).</p>
-          </article>
-
-          <!-- Símbolo e natureza -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Símbolo e natureza</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]">
-              <strong>Símbolo:</strong> Ofá (arco e flecha).
-            </p>
-            <p class="mt-2 leading-7 text-[#5C6859]"><strong>Pontos da Natureza:</strong> Matas.</p>
-            <p class="mt-2 leading-7 text-[#5C6859]"><strong>Elemento:</strong> Terra.</p>
-          </article>
-
-          <!-- Ervas -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6 md:col-span-2">
-            <h3 class="font-serif text-2xl text-[#244A32]">Ervas</h3>
-            <p class="mt-4 leading-8 text-[#5C6859]">
-              Alecrim, Guiné, Vence Demanda, Abre Caminho, Peregum (verde), Taioba, Espinheira
-              Santa, Jurema, Jureminha, Mangueira, Desata Nó.
-            </p>
-            <p class="mt-3 leading-8 text-[#5C6859]">
-              (Erva de Oxossi, Erva da Jurema, Alfavaca, Caiçara, Eucalipto)
-            </p>
-          </article>
-
-          <!-- Flores e essências -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Flores e essências</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]"><strong>Flores:</strong> Flores do campo.</p>
-            <p class="mt-2 leading-7 text-[#5C6859]"><strong>Essências:</strong> Alecrim.</p>
-          </article>
-
-          <!-- Pedras e metal -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Pedras e metal</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]">
-              <strong>Pedras:</strong> Esmeralda, Amazonita. (Turquesa, Quartzo Verde, Calcita
-              Verde)
-            </p>
-            <p class="mt-2 leading-7 text-[#5C6859]"><strong>Metal:</strong> Bronze (Latão).</p>
-          </article>
-
-          <!-- Correspondências -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Correspondências</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]"><strong>Planeta:</strong> Vênus.</p>
-            <p class="mt-2 leading-7 text-[#5C6859]"><strong>Chakra:</strong> Esplênico.</p>
-            <p class="mt-2 leading-7 text-[#5C6859]">
-              <strong>Saúde:</strong> Aparelho Respiratório.
-            </p>
-          </article>
-
-          <!-- Calendário -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Calendário e Tradição</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]">
-              <strong>Dia da Semana:</strong> Quinta-feira.
-            </p>
-            <p class="mt-2 leading-7 text-[#5C6859]"><strong>Número:</strong> 6.</p>
-            <p class="mt-2 leading-7 text-[#5C6859]">
-              <strong>Data Comemorativa:</strong> 20 de janeiro.
-            </p>
-            <p class="mt-2 leading-7 text-[#5C6859]"><strong>Sincretismo:</strong> S. Sebastião.</p>
-          </article>
-
-          <!-- Bebidas -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Bebidas</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]">
-              Vinho tinto (água de coco, caldo de cana, aluá).
-            </p>
-          </article>
-
-          <!-- Animais -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6">
-            <h3 class="font-serif text-2xl text-[#244A32]">Animais</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]">
-              Tatu, Veado, Javali. (qualquer tipo de caça)
-            </p>
-          </article>
-
-          <!-- Comidas -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6 md:col-span-2">
-            <h3 class="font-serif text-2xl text-[#244A32]">Comidas</h3>
-            <p class="mt-4 leading-8 text-[#5C6859]">
-              Axoxô – milho com fatias de coco, Frutas. (Carne de caça, Taioba, Ewa - feijão
-              fradinho torrado na panela de barro, papa de coco e frutas.)
-            </p>
-          </article>
-
-          <!-- Incompatibilidades -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6 md:col-span-2">
-            <h3 class="font-serif text-2xl text-[#244A32]">Incompatibilidades</h3>
-            <p class="mt-4 leading-7 text-[#5C6859]">
-              Mel, Cabeça de bicho (nos sacrifícios e alimentos), Ovo.
-            </p>
-          </article>
-        </div>
-
-        <p class="mx-auto mt-10 max-w-3xl text-center text-sm italic leading-7 text-[#5C6859]">
-          As informações apresentadas correspondem às associações religiosas descritas no material
-          de estudo e podem variar conforme a tradição e os fundamentos de cada casa.
-        </p>
-
-        <p class="mt-4 text-center text-sm italic text-[#5C6859]">
+          <p class="mt-6 text-sm italic text-[#5C6859]">
+            Referências culturais que podem variar conforme a tradição; qualquer uso ritualístico
+            deve seguir a orientação da casa.
+          </p>
+        </details>
+        <p class="mt-8 text-center text-sm italic text-[#5C6859]">
           Fonte: Curso de Umbanda — Sociedade Espiritualista Mata Virgem.
         </p>
       </div>
     </section>
 
-    <!-- Qualidades de Oxóssi: lista recolhível com hover original -->
-    <section class="bg-white px-6 py-20">
-      <div class="mx-auto max-w-5xl">
-        <div class="mb-10 text-center">
-          <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">
-            Tradição e ancestralidade
-          </p>
-          <h2 class="font-serif text-3xl sm:text-4xl text-[#244A32]">Qualidades de Oxóssi</h2>
-          <p class="mx-auto mt-5 max-w-2xl leading-7 text-[#5C6859]">
-            Conheça os nomes das qualidades de Oxóssi apresentados no material de estudo da
-            Sociedade Espiritualista Mata Virgem.
-          </p>
-        </div>
-
-        <details class="group mx-auto max-w-5xl">
-          <summary
-            class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl border border-[#DCE7D8] bg-[#F8F5EE] px-6 py-4 font-medium text-[#244A32] transition-colors hover:border-[#B58D38] [&::-webkit-details-marker]:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B58D38]"
+    <section class="bg-[#F8F5EE] px-6 py-20">
+      <div class="mx-auto max-w-5xl text-center">
+        <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">
+          Tradições e denominações
+        </p>
+        <h2 class="font-serif text-3xl text-[#244A32] sm:text-4xl">Qualidades de Oxóssi</h2>
+        <p class="mx-auto mt-5 text-[#5C6859]">O material apresenta 15 denominações de Oxóssi.</p>
+        <button
+          type="button"
+          :aria-expanded="mostrarQualidades"
+          class="mt-8 rounded-full bg-[#244A32] px-7 py-3 font-semibold text-white transition hover:bg-[#346D4A] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B58D38]"
+          @click="mostrarQualidades = !mostrarQualidades"
+        >
+          {{ mostrarQualidades ? 'Recolher as 15 denominações' : 'Ver as 15 denominações' }}
+        </button>
+        <div
+          v-if="mostrarQualidades"
+          class="mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        >
+          <div
+            v-for="(qualidade, i) in qualidadesOxossi"
+            :key="qualidade"
+            class="rounded-xl border border-[#DCE7D8] bg-white px-5 py-5 text-left shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#B58D38] hover:bg-[#ECF4EA] hover:shadow-md"
           >
-            <span class="group-open:hidden">Ver as 15 denominações</span>
-            <span class="hidden group-open:inline">Recolher denominações</span>
-            <span aria-hidden="true" class="text-xl transition-transform group-open:rotate-180"
-              >⌄</span
-            >
-          </summary>
-
-          <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-            <div
-              v-for="qualidade in qualidadesOxossi"
-              :key="qualidade"
-              class="flex min-h-28 items-center justify-center rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#B58D38] hover:shadow-md"
-            >
-              <h3 class="font-serif text-lg text-[#244A32]">{{ qualidade }}</h3>
-            </div>
+            <span class="mr-2 text-sm text-[#B58D38]">{{ String(i + 1).padStart(2, '0') }}</span
+            ><span class="font-serif text-xl text-[#244A32]">{{ qualidade }}</span>
           </div>
-        </details>
-
-        <p class="mt-8 text-center text-sm italic text-[#5C6859]">
+        </div>
+        <p class="mt-8 text-sm italic text-[#5C6859]">
           Fonte: Curso de Umbanda — Sociedade Espiritualista Mata Virgem.
         </p>
       </div>
@@ -402,95 +297,77 @@ const caracteristicasFilhos = [
       </div>
     </section>
 
-    <!-- Características e personalidade dos filhos de Oxóssi -->
     <section class="bg-white px-6 py-20">
-      <div class="mx-auto max-w-5xl">
-        <div class="mb-12 text-center">
+      <div class="mx-auto max-w-4xl">
+        <div class="text-center">
           <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">
-            Comportamento e individualidade
+            Arquétipos tradicionais
           </p>
-          <h2 class="font-serif text-3xl sm:text-4xl text-[#244A32]">Os filhos de Oxóssi</h2>
-          <p class="mx-auto mt-6 max-w-2xl leading-8 text-[#5C6859]">
-            Conheça as características físicas e comportamentais atribuídas aos filhos de Oxóssi no
-            material de estudo, relacionadas ao arquétipo do caçador.
+          <h2 class="font-serif text-3xl text-[#244A32] sm:text-4xl">Os filhos de Oxóssi</h2>
+          <p class="mx-auto mt-5 max-w-2xl leading-8 text-[#5C6859]">
+            As descrições representam arquétipos tradicionais, não regras universais sobre a
+            aparência ou personalidade das pessoas filhas de Oxóssi.
           </p>
         </div>
-
-        <div ref="secaoFilhos" class="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
-          <details
-            @toggle="aoAlternarFilho"
-            v-for="item in caracteristicasFilhos"
-            :key="item.titulo"
-            class="group self-start rounded-2xl border border-[#DCE7D8] bg-[#F8F5EE] p-6"
+        <div class="mt-10 space-y-4">
+          <article
+            v-for="(filho, i) in caracteristicasFilhos"
+            :key="filho.titulo"
+            class="overflow-hidden rounded-2xl border border-[#DCE7D8] bg-white shadow-sm"
           >
-            <summary
-              class="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-2xl text-[#244A32] [&::-webkit-details-marker]:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B58D38]"
+            <button
+              type="button"
+              :aria-expanded="filhoAberto === i"
+              class="flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl text-[#244A32] transition hover:bg-[#ECF4EA] focus-visible:outline-2 focus-visible:outline-[#B58D38]"
+              @click="filhoAberto = filhoAberto === i ? -1 : i"
             >
-              <span>{{ item.titulo }}</span>
-              <span
-                aria-hidden="true"
-                class="shrink-0 text-xl transition-transform group-open:rotate-180"
-                >⌄</span
-              >
-            </summary>
-            <div class="mt-5 space-y-4 leading-8 text-[#5C6859]">
-              <p v-for="paragrafo in item.paragrafos" :key="paragrafo">{{ paragrafo }}</p>
+              <span>{{ filho.titulo }}</span
+              ><span class="shrink-0 text-[#B58D38]">{{ filhoAberto === i ? '−' : '+' }}</span>
+            </button>
+            <div
+              v-if="filhoAberto === i"
+              class="space-y-4 border-t border-[#DCE7D8] px-6 py-6 leading-8 text-[#5C6859]"
+            >
+              <p v-for="paragrafo in filho.paragrafos" :key="paragrafo">{{ paragrafo }}</p>
             </div>
-          </details>
+          </article>
         </div>
-
-        <p class="mx-auto mt-10 max-w-3xl text-center text-sm italic leading-7 text-[#5C6859]">
-          As características apresentadas representam descrições arquetípicas presentes no material
-          de estudo, não sendo regras sobre a aparência, o comportamento ou a personalidade de cada
-          pessoa.
-        </p>
-        <p class="mt-4 text-center text-sm italic text-[#5C6859]">
+        <p class="mt-8 text-center text-sm italic text-[#5C6859]">
           Fonte: Curso de Umbanda — Sociedade Espiritualista Mata Virgem.
         </p>
       </div>
     </section>
 
-    <!-- Lendas de Oxóssi -->
+    <!-- Lendas: leitura progressiva sem retirar o texto original -->
     <section class="bg-[#F8F5EE] px-6 py-20">
-      <div class="mx-auto max-w-5xl">
-        <div class="mb-12 text-center">
+      <div class="mx-auto max-w-4xl">
+        <div class="text-center">
           <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">
             Histórias e ancestralidade
           </p>
-
-          <h2 class="font-serif text-3xl sm:text-4xl text-[#244A32]">Lendas de Oxóssi</h2>
-
-          <p class="mx-auto mt-6 max-w-2xl leading-8 text-[#5C6859]">
-            Conheça as narrativas e tradições apresentadas em nosso material de estudo, que revelam
-            as origens de Oxóssi, suas relações com outros Orixás, sua ligação com as florestas, a
-            ancestralidade e a fartura.
+          <h2 class="font-serif text-3xl text-[#244A32] sm:text-4xl">Lendas de Oxóssi</h2>
+          <p class="mx-auto mt-5 max-w-2xl leading-8 text-[#5C6859]">
+            Conheça as narrativas tradicionais de Oxóssi. Toque em uma história para ler o conteúdo
+            completo.
           </p>
         </div>
-
-        <div class="space-y-8">
-          <!-- Introdução mitológica de Oxóssi -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-white p-6 shadow-sm md:p-10">
-            <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">
-              Tradições e mitologia
-            </p>
-
-            <h3 class="font-serif text-3xl text-[#244A32]">
-              Oxóssi: o Rei de Keto e Senhor das Matas
-            </h3>
-
-            <p class="mt-5 leading-8 text-[#5C6859]">
-              Divindade da caça que vive nas florestas, Oxóssi está ligado aos animais, às árvores e
-              aos antepassados. O material de estudo apresenta suas origens, suas relações com
-              outros Orixás e suas representações tradicionais.
-            </p>
-
-            <details class="mt-6 border-t border-[#DCE7D8] pt-6">
-              <summary
-                class="cursor-pointer font-medium text-[#244A32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B58D38]"
-              >
-                Ler o conteúdo completo
-              </summary>
-
+        <div class="mt-10 space-y-4">
+          <details
+            class="group overflow-hidden rounded-2xl border border-[#DCE7D8] bg-white shadow-sm"
+          >
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-serif text-xl text-[#244A32] transition hover:bg-[#ECF4EA] [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-[#B58D38]"
+            >
+              <span>Oxóssi: o Rei de Keto e Senhor das Matas</span
+              ><span class="shrink-0 font-sans text-[#B58D38] group-open:hidden">+</span
+              ><span class="hidden shrink-0 font-sans text-[#B58D38] group-open:inline">−</span>
+            </summary>
+            <div class="space-y-5 border-t border-[#DCE7D8] px-6 py-6 leading-8 text-[#5C6859]">
+              <p class="mt-5 leading-8 text-[#5C6859]">
+                Divindade da caça que vive nas florestas, Oxóssi está ligado aos animais, às árvores
+                e aos antepassados. O material de estudo apresenta suas origens, suas relações com
+                outros Orixás e suas representações tradicionais.
+              </p>
               <div class="mt-6 space-y-8 leading-8 text-[#5C6859]">
                 <div>
                   <h4 class="mb-3 font-serif text-2xl text-[#244A32]">A divindade da caça</h4>
@@ -594,27 +471,23 @@ const caracteristicasFilhos = [
                   </p>
                 </div>
               </div>
-            </details>
-          </article>
-
-          <!-- Primeira lenda -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-white p-6 shadow-sm md:p-10">
-            <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">Primeira lenda</p>
-
-            <h3 class="font-serif text-3xl text-[#244A32]">Como Oxóssi virou Orixá</h3>
-
-            <p class="mt-5 leading-8 text-[#5C6859]">
-              A história de Odé, o grande caçador, seu encontro com Oxumaré e seu renascimento como
-              Orixá.
-            </p>
-
-            <details class="mt-6 border-t border-[#DCE7D8] pt-6">
-              <summary
-                class="cursor-pointer font-medium text-[#244A32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B58D38]"
-              >
-                Ler a lenda completa
-              </summary>
-
+            </div>
+          </details>
+          <details
+            class="group overflow-hidden rounded-2xl border border-[#DCE7D8] bg-white shadow-sm"
+          >
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-serif text-xl text-[#244A32] transition hover:bg-[#ECF4EA] [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-[#B58D38]"
+            >
+              <span>Como Oxóssi virou Orixá</span
+              ><span class="shrink-0 font-sans text-[#B58D38] group-open:hidden">+</span
+              ><span class="hidden shrink-0 font-sans text-[#B58D38] group-open:inline">−</span>
+            </summary>
+            <div class="space-y-5 border-t border-[#DCE7D8] px-6 py-6 leading-8 text-[#5C6859]">
+              <p class="mt-5 leading-8 text-[#5C6859]">
+                A história de Odé, o grande caçador, seu encontro com Oxumaré e seu renascimento
+                como Orixá.
+              </p>
               <div class="mt-6 space-y-5 leading-8 text-[#5C6859]">
                 <p>
                   Odé era um grande caçador. Certo dia, saiu para caçar sem consultar o oráculo Ifá
@@ -641,27 +514,23 @@ const caracteristicasFilhos = [
                   Odé renascer como Orixá, com o nome de Oxossi.
                 </p>
               </div>
-            </details>
-          </article>
-
-          <!-- Segunda lenda -->
-          <article class="rounded-2xl border border-[#DCE7D8] bg-white p-6 shadow-sm md:p-10">
-            <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">Segunda lenda</p>
-
-            <h3 class="font-serif text-3xl text-[#244A32]">Orixá da Caça e da Fartura</h3>
-
-            <p class="mt-5 leading-8 text-[#5C6859]">
-              A história de Òsotokànsosó, o caçador de uma única flecha, e da vitória que lhe trouxe
-              o reconhecimento de seu povo.
-            </p>
-
-            <details class="mt-6 border-t border-[#DCE7D8] pt-6">
-              <summary
-                class="cursor-pointer font-medium text-[#244A32] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B58D38]"
-              >
-                Ler a lenda completa
-              </summary>
-
+            </div>
+          </details>
+          <details
+            class="group overflow-hidden rounded-2xl border border-[#DCE7D8] bg-white shadow-sm"
+          >
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-serif text-xl text-[#244A32] transition hover:bg-[#ECF4EA] [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-[#B58D38]"
+            >
+              <span>Orixá da Caça e da Fartura</span
+              ><span class="shrink-0 font-sans text-[#B58D38] group-open:hidden">+</span
+              ><span class="hidden shrink-0 font-sans text-[#B58D38] group-open:inline">−</span>
+            </summary>
+            <div class="space-y-5 border-t border-[#DCE7D8] px-6 py-6 leading-8 text-[#5C6859]">
+              <p class="mt-5 leading-8 text-[#5C6859]">
+                A história de Òsotokànsosó, o caçador de uma única flecha, e da vitória que lhe
+                trouxe o reconhecimento de seu povo.
+              </p>
               <div class="mt-6 space-y-5 leading-8 text-[#5C6859]">
                 <p>
                   Em tempos distantes, Odùdùwa, Rei de Ifé, celebrava com seu povo uma colheita
@@ -699,10 +568,9 @@ const caracteristicasFilhos = [
                   grande façanha, carregando o título de Oxossi.
                 </p>
               </div>
-            </details>
-          </article>
+            </div>
+          </details>
         </div>
-
         <p class="mt-10 text-center text-sm italic text-[#5C6859]">
           Fonte: Curso de Umbanda — Sociedade Espiritualista Mata Virgem.
         </p>
