@@ -1,0 +1,9 @@
+Atualização: página de Oxum implementada.
+A página de Oxóssi não foi alterada.
+Para finalizar o visual aprovado, adicione suas imagens em:
+public/images/orixas/banner-oxum.png
+public/images/comidas/omolocum.png
+public/images/comidas/canjica-oxum.png
+Sem essas imagens, o hero usa um degradê e os pratos exibem um espaço neutro.
+Componente CozinhaRitualistica.vue reutilizado, preservando Oxóssi como padrão.
+Execute: npm install e npm run dev.
