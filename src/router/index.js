@@ -24,6 +24,11 @@ const router = createRouter({
       name: 'oxum',
       component: () => import('../views/OxumView.vue'),
     },
+    {
+      path: '/orixas/ogum',
+      name: 'ogum',
+      component: () => import('../views/OgumView.vue'),
+    },
   ],
 })
 

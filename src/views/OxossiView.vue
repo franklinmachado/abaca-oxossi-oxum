@@ -106,8 +106,13 @@ const caracteristicasFilhos = [
     <OrixaHero
       titulo="Oxóssi"
       subtitulo="Conheça a história, os símbolos e os ensinamentos de Oxóssi, Orixá das matas, da caça e da fartura."
+      saudacao="Okê Arô!"
       imagem="/images/orixas/banner-oxossi.png"
-      posicaoImagem="35% center"
+      posicaoImagem="35% 0%"
+      posicaoMobile="35% 42%"
+      corFundo="#193521"
+      corDestaque="#E8D7A8"
+      tema="oxossi"
     />
 
     <!-- Apresentação unificada de Oxóssi -->

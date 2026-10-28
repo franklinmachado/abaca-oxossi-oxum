@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import OrixaHero from '../components/OrixaHero.vue'
 import CozinhaRitualistica from '../components/CozinhaRitualistica.vue'
 
 const mostrarQualidades = ref(false)
@@ -112,32 +113,18 @@ const lendaAberta = ref(-1)
 
 <template>
   <main class="min-h-screen bg-[#F8F5EE] text-[#244A32]">
-    <section
-      class="relative isolate flex min-h-[560px] items-end justify-center overflow-hidden bg-[#193F64] px-6 pb-12 pt-24 text-center text-white md:min-h-[460px] md:items-center md:py-24"
-    >
-      <picture class="absolute inset-0 z-0 block h-full w-full">
-        <!-- Banner para celular -->
-        <source media="(max-width: 767px)" srcset="/images/banners/oxum-banner-mobile.png" />
-
-        <!-- Banner original para desktop -->
-        <img
-          src="/images/banners/oxum-banner.png"
-          alt="Representação artística de Oxum com seu abebé, junto às águas doces"
-          class="h-full w-full object-cover object-center"
-        />
-      </picture>
-      <div
-        class="absolute inset-0 z-10 bg-gradient-to-t from-[#102C47]/90 via-[#173F60]/60 to-[#173F60]/25"
-      ></div>
-      <div class="relative z-20 mx-auto max-w-3xl">
-        <p class="mb-4 text-sm uppercase tracking-[0.3em] text-[#F1D18A]">Nossa ancestralidade</p>
-        <h1 class="font-serif text-6xl md:text-7xl">Oxum</h1>
-        <p class="mx-auto mt-6 max-w-2xl text-lg leading-8">
-          Senhora das águas doces, do amor, da fertilidade e da abundância.
-        </p>
-        <p class="mt-5 text-xl text-[#F1D18A]">Ora Ieiêô!</p>
-      </div>
-    </section>
+    <OrixaHero
+      titulo="Oxum"
+      subtitulo="Senhora das águas doces, do amor, da fertilidade e da abundância."
+      saudacao="Ora Ieiêô!"
+      imagem="/images/banners/oxum-banner.png"
+      imagemMobile="/images/banners/oxum-banner-mobile.png"
+      posicaoImagem="center 0%"
+      posicaoMobile="center"
+      corFundo="#193F64"
+      corDestaque="#F1D18A"
+      tema="oxum"
+    />
 
     <section class="px-6 py-20">
       <div class="mx-auto max-w-5xl">
@@ -370,5 +357,13 @@ const lendaAberta = ref(-1)
     </section>
 
     <CozinhaRitualistica orixa="Oxum" />
+    <div class="flex justify-center px-6 pb-20 pt-12">
+      <RouterLink
+        to="/orixas"
+        class="inline-flex items-center justify-center rounded-xl border border-[#C99735] px-8 py-4 text-[#244A32] transition-colors duration-300 hover:bg-[#C99735] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#244A32]"
+      >
+        ← Voltar para os Orixás
+      </RouterLink>
+    </div>
   </main>
 </template>

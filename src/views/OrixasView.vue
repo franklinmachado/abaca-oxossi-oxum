@@ -14,6 +14,12 @@ const orixas = [
     imagem: '/images/cards/oxum-card.png',
     rota: '/orixas/oxum',
   },
+  {
+    nome: 'Ogum',
+    descricao: 'Conheça a história, os símbolos e os ensinamentos de Ogum.',
+    imagem: '/images/cards/ogum-card.png',
+    rota: '/orixas/ogum',
+  },
 ]
 </script>
 
