@@ -1,0 +1,31 @@
+export const caracteristicasOgum = [
+  ['Cores', 'Azul-rei e vermelho'],
+  ['Elemento', 'Fogo'],
+  ['Símbolo', 'Espada'],
+  ['Metal', 'Ferro'],
+  ['Dia da semana', 'Terça-feira'],
+  ['Data comemorativa', '23 de abril'],
+  ['Saudação', 'Ogum Iê!'],
+  ['Número', '2'],
+]
+export const extrasOgum = [
+  ['Fio de contas', 'Contas e firmas vermelhas leitosas.'],
+  ['Ervas', 'Peregum, São Gonçalinho, quitoco, mariô, lança-de-Ogum e espada-de-Ogum, entre outras.'],
+  ['Flores', 'Crista-de-galo, cravos e palmas vermelhas.'],
+  ['Essência', 'Violeta.'],
+  ['Pedras', 'Granada, rubi e sárdio; podem existir outras correspondências conforme a casa.'],
+  ['Planeta', 'Marte.'],
+  ['Chakra', 'Umbilical.'],
+  ['Saúde', 'Coração e glândulas endócrinas (correspondência tradicional, não orientação médica).'],
+  ['Bebida', 'Cerveja branca.'],
+  ['Animais', 'Cachorro e galo vermelho.'],
+  ['Comidas', 'Cará, feijão-mulatinho com camarão e dendê e manga-espada.'],
+  ['Incompatibilidades', 'Quiabo, segundo o material de referência.'],
+  ['Domínios', 'Ferro, ferramentas, trabalho, caminhos e proteção.'],
+  ['Natureza', 'Caminhos, estradas e locais associados ao trabalho e à transformação.'],
+  ['Sincretismo', 'São Jorge, em muitas tradições brasileiras; pode variar conforme a casa.'],
+  [
+    'Observação',
+    'As correspondências, oferendas e fundamentos rituais variam entre tradições. Consulte a orientação da casa.',
+  ],
+]

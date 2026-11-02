@@ -1,0 +1,17 @@
+export const qualidadesOxossi = [
+  'Êboalama',
+  'Orè',
+  'Inlé ou Erinlè',
+  'Fayemi',
+  'Ondun',
+  'Asunara',
+  'Apala',
+  'Agbandada',
+  'Owala',
+  'Kusi',
+  'Ibuanun',
+  'Olumeye',
+  'Akanbi',
+  'Alapade',
+  'Mutalambo',
+]
