@@ -42,3 +42,6 @@ npm run build
 ```sh
 npm run lint
 ```
+## Publicação
+
+Projeto publicado com Cloudflare Pages.
