@@ -1,0 +1,22 @@
+export const oxumQualidades = {
+  descricao: 'O material apresenta 17 denominações de Oxum.',
+  qualidades: [
+  'Apará',
+  'Ijimum',
+  'Iápondá',
+  'Ifé',
+  'Abalu',
+  'Jumu',
+  'Oxogbo',
+  'Ajagura',
+  'Yeye Oga',
+  'Yeye Petu',
+  'Yeye Kare',
+  'Yeye Oke',
+  'Yeye Oloko',
+  'Yeye Merin',
+  'Yeye Àyálá',
+  'Yeye Lokun',
+  'Yeye Odo',
+],
+}

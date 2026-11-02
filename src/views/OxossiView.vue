@@ -13,7 +13,6 @@ import { qualidadesOxossi } from '../data/oxossiQualidades.js'
 import OrixaCaracteristicas from '../components/OrixaCaracteristicas.vue'
 import { caracteristicasOxossi, extrasOxossi } from '../data/oxossiCaracteristicas.js'
 import { introducaoOxossi, simbolosOxossi } from '../data/oxossiIntroducao.js'
-
 </script>
 
 <template>
@@ -23,7 +22,7 @@ import { introducaoOxossi, simbolosOxossi } from '../data/oxossiIntroducao.js'
       titulo="Oxóssi"
       subtitulo="Conheça a história, os símbolos e os ensinamentos de Oxóssi, Orixá das matas, da caça e da fartura."
       saudacao="Okê Arô!"
-      imagem="/images/orixas/banner-oxossi.png"
+      imagem="/public/images/banners/oxossi.png"
       posicaoImagem="35% 0%"
       posicaoMobile="35% 42%"
       corFundo="#193521"

@@ -30,7 +30,7 @@ defineProps({
       </div>
       <div
         :class="
-          variante === 'oxossi'
+          ['oxossi', 'oxum'].includes(variante)
             ? 'mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5'
             : 'mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4'
         "
@@ -48,7 +48,9 @@ defineProps({
             :class="
               variante === 'oxossi'
                 ? 'text-sm font-semibold text-[#287047]'
-                : 'text-sm font-semibold text-[#9C3030]'
+                : variante === 'oxum'
+                  ? 'text-sm font-semibold text-[#376F9B]'
+                  : 'text-sm font-semibold text-[#9C3030]'
             "
           >
             {{ titulo }}
@@ -65,7 +67,7 @@ defineProps({
       >
         <summary
           :class="
-            variante === 'oxossi'
+            ['oxossi', 'oxum'].includes(variante)
               ? 'flex cursor-pointer list-none items-center justify-between font-semibold text-[#244A32] [&::-webkit-details-marker]:hidden'
               : 'flex cursor-pointer list-none items-center justify-between font-semibold [&::-webkit-details-marker]:hidden'
           "
@@ -82,14 +84,14 @@ defineProps({
           <div v-for="[titulo, valor] in extras" :key="titulo">
             <h3
               class="font-semibold"
-              :class="variante === 'oxossi' ? 'text-[#287047]' : 'text-[#9C3030]'"
+              :class="variante === 'oxossi' ? 'text-[#287047]' : variante === 'oxum' ? 'text-[#376F9B]' : 'text-[#9C3030]'"
             >
               {{ titulo }}
             </h3>
             <p class="mt-2 leading-7 text-[#5C6859]">{{ valor }}</p>
           </div>
         </div>
-        <p v-if="observacao" class="mt-6 text-sm italic text-[#5C6859]">{{ observacao }}</p>
+        <p v-if="observacao" class="mt-5 text-sm italic text-[#5C6859]">{{ observacao }}</p>
       </details>
       <p v-if="fonte" class="mt-8 text-center text-sm italic text-[#5C6859]">{{ fonte }}</p>
     </div>

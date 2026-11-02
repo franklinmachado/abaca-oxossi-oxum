@@ -20,6 +20,54 @@ const orixas = [
     imagem: '/images/cards/ogum-card.png',
     rota: '/orixas/ogum',
   },
+  {
+    nome: 'Xangô',
+    descricao: 'Conheça os símbolos e as tradições associados à justiça e ao equilíbrio de Xangô.',
+    imagem: '/images/cards/xango-card-n.webp',
+    rota: '/orixas/xango',
+  },
+  {
+    nome: 'Nanã',
+    descricao: 'Conheça as tradições de Nanã, ligadas à ancestralidade e à sabedoria.',
+    imagem: '',
+    rota: '',
+  },
+  {
+    nome: 'Iansã',
+    descricao: 'Conheça os símbolos de Iansã, associados aos ventos, às tempestades e à coragem.',
+    imagem: '',
+    rota: '',
+  },
+  {
+    nome: 'Omolu',
+    descricao: 'Conheça os fundamentos e as tradições associados a Omolu.',
+    imagem: '',
+    rota: '',
+  },
+  {
+    nome: 'Obaluaê',
+    descricao: 'Conheça os fundamentos e as tradições associados a Obaluaê.',
+    imagem: '',
+    rota: '',
+  },
+  {
+    nome: 'Iemanjá',
+    descricao: 'Conheça os símbolos e as tradições de Iemanjá, associada às águas do mar.',
+    imagem: '',
+    rota: '',
+  },
+  {
+    nome: 'Oxalá',
+    descricao: 'Conheça os símbolos e as tradições de Oxalá, associados à paz e à fé.',
+    imagem: '',
+    rota: '',
+  },
+  {
+    nome: 'Ibejis',
+    descricao: 'Conheça as tradições dos Ibejis, ligadas à infância e à alegria.',
+    imagem: '',
+    rota: '',
+  },
 ]
 </script>
 

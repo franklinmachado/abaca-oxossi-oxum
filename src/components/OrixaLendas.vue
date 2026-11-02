@@ -19,7 +19,7 @@ const lendaAberta = ref(-1)
         <p class="mb-3 text-sm uppercase tracking-widest text-[#B58D38]">
           Histórias e ancestralidade
         </p>
-        <h2 class="font-serif text-4xl" :class="variante === 'oxossi' ? 'text-[#244A32]' : 'text-[#103D86]'">As lendas de {{ nome }}</h2>
+        <h2 class="font-serif text-4xl" :class="variante === 'xango' ? 'text-[#754735]' : variante === 'oxossi' || variante === 'oxum' ? 'text-[#244A32]' : 'text-[#103D86]'">As lendas de {{ nome }}</h2>
         <p v-if="descricao" class="mx-auto mt-5 max-w-2xl leading-8 text-[#5C6859]">
           {{ descricao }}
         </p>
@@ -33,7 +33,7 @@ const lendaAberta = ref(-1)
           <button
             type="button"
             class="flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl transition focus-visible:outline-2 focus-visible:outline-[#B58D38]"
-            :class="variante === 'oxossi' ? 'text-[#244A32] hover:bg-[#ECF4EA]' : 'text-[#103D86] hover:bg-[#EDF1F9]'"
+            :class="variante === 'xango' ? 'text-[#754735] hover:bg-[#F3EAE0]' : variante === 'oxossi' ? 'text-[#244A32] hover:bg-[#ECF4EA]' : variante === 'oxum' ? 'text-[#244A32] hover:bg-[#EDF4F9]' : 'text-[#103D86] hover:bg-[#EDF1F9]'"
             :aria-expanded="lendaAberta === i"
             @click="lendaAberta = lendaAberta === i ? -1 : i"
           >
@@ -42,11 +42,11 @@ const lendaAberta = ref(-1)
           </button>
           <div
             v-if="lendaAberta === i"
-            class="space-y-4 border-t border-[#E1D8C7] px-6 py-6 leading-8 text-[#5C6859]"
+            :class="variante === 'oxum' ? 'border-t border-[#E1D8C7] px-6 py-6 leading-8 text-[#5C6859]' : 'space-y-4 border-t border-[#E1D8C7] px-6 py-6 leading-8 text-[#5C6859]'"
           >
             <template v-if="lenda.blocos?.length">
               <template v-for="(bloco, indice) in lenda.blocos" :key="indice">
-                <h3 v-if="bloco.tipo === 'subtitulo'" class="font-serif text-2xl" :class="variante === 'oxossi' ? 'text-[#244A32]' : 'text-[#103D86]'">{{ bloco.texto }}</h3>
+                <h3 v-if="bloco.tipo === 'subtitulo'" class="font-serif text-2xl" :class="variante === 'xango' ? 'text-[#754735]' : variante === 'oxossi' || variante === 'oxum' ? 'text-[#244A32]' : 'text-[#103D86]'">{{ bloco.texto }}</h3>
                 <p v-else>{{ bloco.texto }}</p>
               </template>
             </template>

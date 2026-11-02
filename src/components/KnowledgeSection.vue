@@ -5,7 +5,7 @@ const categorias = [
   {
     titulo: 'Orixás',
     descricao: 'Conheça as histórias, símbolos e fundamentos dos Orixás.',
-    imagem: '/images/orixas/card-orixas.png',
+    imagem: '/images/orixas/orixas.png',
     rota: '/orixas',
   },
   {

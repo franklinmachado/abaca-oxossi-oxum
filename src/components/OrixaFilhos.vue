@@ -32,7 +32,7 @@ const filhoAberto = ref(-1)
         >
           <button
             type="button"
-            :class="variante === 'oxossi' ? 'flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl text-[#244A32] transition hover:bg-[#ECF4EA] focus-visible:outline-2 focus-visible:outline-[#B58D38]' : 'flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl transition hover:bg-[#EDF1F9] focus-visible:outline-2 focus-visible:outline-[#B58D38]'"
+            :class="variante === 'xango' ? 'flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl text-[#754735] transition hover:bg-[#F3EAE0] focus-visible:outline-2 focus-visible:outline-[#B58D38]' : variante === 'oxossi' ? 'flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl text-[#244A32] transition hover:bg-[#ECF4EA] focus-visible:outline-2 focus-visible:outline-[#B58D38]' : variante === 'oxum' ? 'flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl text-[#244A32] transition hover:bg-[#EDF4F9] focus-visible:outline-2 focus-visible:outline-[#B58D38]' : 'flex w-full items-center justify-between gap-4 p-6 text-left font-serif text-xl transition hover:bg-[#EDF1F9] focus-visible:outline-2 focus-visible:outline-[#B58D38]'"
             :aria-expanded="filhoAberto === i"
             @click="filhoAberto = filhoAberto === i ? -1 : i"
           >

@@ -1,0 +1,26 @@
+export const xangoCaracteristicas = {
+  descricao: 'Referências apresentadas no Curso de Umbanda da Sociedade Espiritualista Mata Virgem; os fundamentos podem variar entre casas.',
+  caracteristicas: [
+    ['Cor', 'Marrom (também branco e vermelho)'],
+    ['Fio de contas', 'Marrom leitosa'],
+    ['Símbolo', 'Oxé — machado de duas lâminas'],
+    ['Ponto da natureza', 'Pedreira'],
+    ['Elemento', 'Fogo'],
+    ['Dia da semana', 'Quarta-feira'],
+    ['Saudação', 'Kaô Cabecile (Opanixé ô Kaô)'],
+    ['Pedras', 'Meteorito, pirita e jaspe'],
+    ['Flores', 'Cravos vermelhos e brancos'],
+    ['Número', '12'],
+  ],
+  extras: [
+    ['Ervas', 'Erva-de-são-joão, erva-de-santa-maria, beti-cheiroso, nega-mina, elevante, cordão-de-frade, jarrinha, erva-de-bicho, erva-tostão, caruru, para-raio e umbaúba; em algumas casas, xequelê.'],
+    ['Essência', 'Cravo (flor)'], ['Metal', 'Estanho'], ['Planeta', 'Júpiter'],
+    ['Chacra', 'Cardíaco'], ['Saúde (associação tradicional)', 'Fígado e vesícula'],
+    ['Bebida', 'Cerveja preta'], ['Animais', 'Tartaruga e carneiro'],
+    ['Comidas', 'Agebô e amalá'], ['Data comemorativa', '30 de setembro'],
+    ['Sincretismos mencionados', 'São José, Santo Antônio, São Pedro, Moisés, São João Batista e São Jerônimo.'],
+    ['Incompatibilidades mencionadas', 'Caranguejo e doenças.'],
+  ],
+  observacao: 'Informações de caráter religioso e tradicional, não orientações médicas nem instruções de uso de ervas.',
+  fonte: 'Fonte: Curso de Umbanda — Sociedade Espiritualista Mata Virgem, seção Características.',
+}

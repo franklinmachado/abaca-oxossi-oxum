@@ -60,8 +60,23 @@ const estilo = computed(() => ({
 .orixa-hero--oxum .orixa-hero-degrade {
   background: linear-gradient(to top, rgb(16 44 71 / 90%), rgb(23 63 96 / 60%), rgb(23 63 96 / 25%));
 }
+.orixa-hero--xango .orixa-hero-degrade {
+  background: linear-gradient(to top, rgb(53 27 20 / 94%), rgb(91 44 30 / 67%), rgb(91 44 30 / 26%));
+}
 .orixa-hero--ogum .orixa-hero-degrade {
   background: linear-gradient(to top, rgb(9 27 58 / 88%), rgb(16 43 93 / 62%), rgb(16 43 93 / 25%));
+}
+/* Ajuste exclusivo de Xangô: mantém o enquadramento mobile aprovado.
+   Em telas largas, prioriza a coroa e o rosto sem alterar outros Orixás. */
+@media (min-width: 768px) {
+  .orixa-hero--xango .orixa-hero-imagem {
+    object-position: center 12%;
+  }
+}
+@media (min-width: 1600px) {
+  .orixa-hero--xango .orixa-hero-imagem {
+    object-position: center top;
+  }
 }
 @media (min-width: 768px) {
   .orixa-hero-imagem { object-position: var(--hero-position); }

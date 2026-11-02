@@ -19,7 +19,7 @@ defineProps({
         As atribuições de {{ nome }}
       </h2>
       <article class="mt-10 rounded-3xl border border-[#E1D8C7] bg-[#F8F5EE] p-8 shadow-sm sm:p-12">
-        <div class="text-4xl" :class="variante === 'oxossi' ? 'text-[#287047]' : 'text-[#9C3030]'">
+        <div class="text-4xl" :class="variante === 'xango' ? 'text-[#A13D32]' : variante === 'oxossi' ? 'text-[#287047]' : variante === 'oxum' ? 'text-[#376F9B]' : 'text-[#9C3030]'">
           {{ atribuicoes.icone }}
         </div>
         <h3

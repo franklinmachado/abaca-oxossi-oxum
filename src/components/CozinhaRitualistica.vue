@@ -82,57 +82,19 @@ const receitasOxum = [
     ],
   },
 ]
-const receitasOgum = [
-  {
-    nome: 'Cará com Dendê e Mel',
-    imagem: '/images/comidas/ogum-cara-dende-mel.jpg',
-    descricao: 'Preparação de cará com dendê em uma metade e mel na outra.',
-    ingredientes: ['1 inhame (cará)', 'Azeite de dendê', 'Mel'],
-    preparo: [
-      'Lave o inhame em sete águas (sete vezes).',
-      'Coloque-o em uma gamela de madeira ou alguidar.',
-      'Com uma faca (obé) bem afiada, corte-o na vertical.',
-      'Na metade esquerda, passe dendê; na metade direita, mel.',
-    ],
-  },
-  {
-    nome: 'Paliteiro de Ogum',
-    imagem: '/images/comidas/ogum-paliteiro.jpg',
-    descricao: 'Cará cozido com casca, ornamentado com palitos de mariô.',
-    ingredientes: ['1 cará', 'Palitos de mariô', 'Azeite de dendê ou mel (opcional)'],
-    preparo: [
-      'Cozinhe o cará com casca.',
-      'Coloque-o em uma gamela de madeira ou alguidar.',
-      'Espete palitos de mariô por toda a superfície.',
-      'Se desejar, regue com dendê ou mel.',
-    ],
-  },
-  {
-    nome: 'Feijão Mulatinho',
-    imagem: '/images/comidas/ogum-feijao-mulatinho.jpg',
-    descricao: 'Feijão mulatinho ou cavalo, temperado com dendê e decorado com sete camarões.',
-    ingredientes: [
-      'Feijão mulatinho (ou feijão-cavalo)',
-      'Cebola',
-      'Azeite de dendê',
-      '7 camarões',
-    ],
-    preparo: [
-      'Cozinhe o feijão mulatinho (ou cavalo).',
-      'Tempere com cebola refogada no dendê.',
-      'Coloque em um alguidar.',
-      'Enfeite com sete camarões fritos no dendê.',
-    ],
-  },
+const receitasXango = [
+  { nome: 'Caruru', imagem: '', descricao: 'Preparação com quiabo, camarão e temperos apresentada no material.',
+    ingredientes: ['Quiabo', 'Camarão seco e fresco', 'Peixe frito', 'Amendoim torrado', 'Alho', 'Cebola', 'Azeite de dendê', 'Água e sal'],
+    preparo: ['Moa o camarão seco e os temperos e refogue-os no dendê.', 'Acrescente o quiabo fatiado e cozinhe, ajustando a água e o dendê.', 'Ao final, junte o camarão cozido e o peixe em lascas e aqueça novamente.'] },
+  { nome: 'Ajebô', imagem: '', descricao: 'Preparo tradicional de quiabo batido até formar uma liga.',
+    ingredientes: ['Quiabo'], preparo: ['Corte o quiabo em rodelas finas em uma gamela.', 'Bata e misture com as mãos até formar uma textura homogênea.'] },
+  { nome: 'Rabada', imagem: '', descricao: 'Rabada com quiabo e base de fubá, conforme o material.',
+    ingredientes: ['Rabada', 'Cebola', 'Azeite de dendê', 'Quiabo', 'Fubá'],
+    preparo: ['Cozinhe a rabada com cebola e dendê.', 'Prepare um refogado com quiabo cortado e junte a carne.', 'Faça uma polenta com fubá, forre uma gamela e disponha o refogado, decorando com 12 quiabos.'] },
 ]
-const receitasPorOrixa = {
-  Oxóssi: receitasOxossi,
-  Oxum: receitasOxum,
-  Ogum: receitasOgum,
-}
-const receitas = receitasPorOrixa[props.orixa] ?? []
+const receitas = props.orixa === 'Xangô' ? receitasXango : props.orixa === 'Oxum' ? receitasOxum : receitasOxossi
 const ehOxum = props.orixa === 'Oxum'
-const ehOgum = props.orixa === 'Ogum'
+const ehXango = props.orixa === 'Xangô'
 </script>
 
 <template>
@@ -144,11 +106,8 @@ const ehOgum = props.orixa === 'Ogum'
         <h2 class="font-serif text-4xl text-[#244A32]">Preparações de {{ orixa }}</h2>
 
         <p class="mx-auto mt-6 max-w-2xl leading-8 text-[#5C6859]">
-          {{
-            ehOgum
-              ? 'Conheça as preparações ritualísticas de Ogum conforme as receitas fornecidas para esta página.'
-              : 'Conheça as preparações tradicionais apresentadas no material de estudo da Sociedade Espiritualista Mata Virgem.'
-          }}
+          Conheça as preparações tradicionais apresentadas no material de estudo da Sociedade
+          Espiritualista Mata Virgem.
         </p>
       </div>
 
@@ -224,11 +183,7 @@ const ehOgum = props.orixa === 'Ogum'
       </p>
 
       <p class="mt-3 text-center text-sm italic text-[#5C6859]">
-        {{
-          ehOgum
-            ? 'Fonte: receitas fornecidas para a página de Ogum.'
-            : 'Fonte: Curso de Umbanda — Sociedade Espiritualista Mata Virgem.'
-        }}
+        Fonte: Curso de Umbanda — Sociedade Espiritualista Mata Virgem.
       </p>
     </div>
   </section>
